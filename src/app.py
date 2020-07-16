@@ -1,7 +1,7 @@
-from conf.settings import DRIVER, GERDAU_DAY, RUMO_DAY, EMAIL_USER, PASSWORD, EMAIL_FROM, TABELA
+from conf.settings import GERDAU_DAY, RUMO_DAY, EMAIL_USER, PASSWORD, EMAIL_FROM, TABELA
 import pandas as pd
 from selenium import webdriver
-from load import get_quote
+from extract import get_quote
 from transformation import variation, bind
 from save import save_df_as_image
 from save.email import send_email
@@ -16,20 +16,17 @@ def main():
 
     if hoje in list_days:
 
-        #Carregando o webdriver
-        driver = webdriver.Chrome(DRIVER)
-
         #Dados Gerdau
         path = GERDAU_DAY
         inst = "Gerdau"
         cod = "GGBR4"
-        df_gerdau = get_quote(path, inst, cod, 15.32, driver)
+        df_gerdau = get_quote(path, inst, cod, 15.57)
 
         #Dados do Rumo SA
         path = RUMO_DAY
         inst = "Rumo SA"
         cod = 'RAIL3'
-        df_rumo = get_quote(path, inst, cod, 23.12, driver)
+        df_rumo = get_quote(path, inst, cod, 23.12)
 
         df_gerdau = variation(df_gerdau)
         df_rumo = variation(df_rumo)
@@ -44,8 +41,8 @@ def main():
     else:
         print ("A BV está fechada!")
 
-schedule.every(1).days.at("10:00").do(main)
-schedule.every(1).days.at("15:00").do(main)
+schedule.every(1).days.at("10:15").do(main)
+schedule.every(1).days.at("15:15").do(main)
 
 while True:
     schedule.run_pending()
