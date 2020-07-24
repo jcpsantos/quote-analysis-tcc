@@ -1,6 +1,5 @@
 from conf.settings import GERDAU_DAY, RUMO_DAY, EMAIL_USER, PASSWORD, EMAIL_FROM, TABELA
 import pandas as pd
-from selenium import webdriver
 from extract import get_quote
 from transformation import variation, bind
 from save import save_df_as_image
