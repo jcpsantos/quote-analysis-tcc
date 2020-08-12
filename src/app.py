@@ -1,8 +1,8 @@
 from conf.settings import GERDAU_DAY, RUMO_DAY, EMAIL_USER, PASSWORD, EMAIL_FROM, TABELA
 import pandas as pd
-from extract import get_quote
+from extract import get_quote, extract_data_qt
 from transformation import variation, bind
-from save import save_df_as_image
+from save import save_df_as_image, graph_candlestick
 from save.email import send_email
 import schedule
 import datetime
@@ -14,6 +14,12 @@ def main():
     hoje = int(datetime.datetime.today().weekday())
 
     if hoje in list_days:
+
+        #Graficos Candlestick
+        df_gerdau_ml = extract_data_qt('GGBR4.SA')
+        df_rumo_ml = extract_data_qt('RAIL3.SA')
+        graph_candlestick(df_gerdau_ml, 'Gerdau', 'GGBR4')
+        graph_candlestick(df_rumo_ml, 'Rumo', 'RAIL3')
 
         #Dados Gerdau
         path = GERDAU_DAY
@@ -40,8 +46,8 @@ def main():
     else:
         print ("A BV está fechada!")
 
-schedule.every(1).days.at("10:15").do(main)
-schedule.every(1).days.at("15:15").do(main)
+schedule.every(1).days.at("10:20").do(main)
+schedule.every(1).days.at("15:20").do(main)
 
 while True:
     schedule.run_pending()

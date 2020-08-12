@@ -10,3 +10,4 @@ EMAIL_USER = os.getenv("EMAIL_USER")
 PASSWORD = os.getenv("PASSWORD")
 EMAIL_FROM = [os.getenv("EMAIL_FROM1"), os.getenv('EMAIL_USER')]
 TABELA = os.getenv("TABELA")
+GRAFICO = os.getenv("GRAFICO")

@@ -3,7 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 import pandas as pd 
-from conf.settings import TABELA
+from conf.settings import TABELA, GRAFICO
 import datetime
 
 def send_email(user,password,from_email=[]):
@@ -33,7 +33,7 @@ def send_email(user,password,from_email=[]):
     msgAlternative.attach(msgText)
     
     # We reference the image in the IMG SRC attribute by the ID we give it below
-    msgText = MIMEText('<b>Segue tabela com as ações compradas </b>.<br><img src="cid:image1">', 'html')
+    msgText = MIMEText('<b>Segue tabela com as ações compradas </b>.<br><img src="cid:image1"><br><b>Gráfico ações da Gerdau </b>.<br><img src="cid:image2"><br><b>Gráfico ações da Rumo </b>.<br><img src="cid:image3">', 'html')
     msgAlternative.attach(msgText)
     
     file = TABELA
@@ -45,6 +45,26 @@ def send_email(user,password,from_email=[]):
     # Define the image's ID as referenced above
     msgImage.add_header('Content-ID', '<image1>')
     msg.attach(msgImage)
+
+    file2 = GRAFICO+"graph_GGBR4.png"
+    # This example assumes the image is in the current directory
+    fp2 = open(file2, 'rb')
+    msgImage2 = MIMEImage(fp2.read(), _subtype="png")
+    fp2.close()
+    
+    # Define the image's ID as referenced above
+    msgImage2.add_header('Content-ID', '<image2>')
+    msg.attach(msgImage2)
+
+    file3 = GRAFICO+"graph_RAIL3.png"
+    # This example assumes the image is in the current directory
+    fp3 = open(file3, 'rb')
+    msgImage3 = MIMEImage(fp3.read(), _subtype="png")
+    fp3.close()
+    
+    # Define the image's ID as referenced above
+    msgImage3.add_header('Content-ID', '<image3>')
+    msg.attach(msgImage3)
     
     # conectaremos de forma segura usando SSL
     server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)

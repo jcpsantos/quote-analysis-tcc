@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import datetime
 import pandas as pd
 from retrying import retry
+import pandas_datareader.data as web
+import yfinance as yf
 
 @retry(stop_max_attempt_number=7, wait_fixed = 2000)
 def get_quote(path, inst, cod, value):
@@ -34,4 +36,9 @@ def get_quote(path, inst, cod, value):
         df = pd.DataFrame({'instituicao':[inst],"codigo": [cod], "data":[data], "horario": [horario[0]],'valor_compra':[valor_de_compra], 'abertura':[float(abertura[12])], 'valor_atual': [float(abertura[9])]})
     
     
+    return df
+
+def extract_data_qt(quote):
+    yf.pdr_override()
+    df = web.get_data_yahoo(quote, period='5y')
     return df
