@@ -5,6 +5,7 @@ from email.mime.image import MIMEImage
 import pandas as pd 
 from conf.settings import TABELA, GRAFICO
 import datetime
+from rich import print
 
 def send_email(user,password,from_email=[]):
     # conexão com os servidores do google
@@ -33,7 +34,7 @@ def send_email(user,password,from_email=[]):
     msgAlternative.attach(msgText)
     
     # We reference the image in the IMG SRC attribute by the ID we give it below
-    msgText = MIMEText('<b>Segue tabela com as ações compradas </b>.<br><img src="cid:image1"><br><b>Gráfico ações da Gerdau </b>.<br><img src="cid:image2"><br><b>Gráfico ações da Rumo </b>.<br><img src="cid:image3">', 'html')
+    msgText = MIMEText('<b>Segue tabela com as ações compradas </b>.<br><img src="cid:image1"><br><b>Gráfico ações da Gerdau </b>.<br><img src="cid:image2"><br><b>Gráfico ações da Rumo </b>.<br><img src="cid:image3"><br><b>Gráfico ações da Marfrig </b>.<br><img src="cid:image4">', 'html')
     msgAlternative.attach(msgText)
     
     file = TABELA
@@ -65,6 +66,16 @@ def send_email(user,password,from_email=[]):
     # Define the image's ID as referenced above
     msgImage3.add_header('Content-ID', '<image3>')
     msg.attach(msgImage3)
+
+    file4 = GRAFICO+"graph_MRFG3.png"
+    # This example assumes the image is in the current directory
+    fp4 = open(file4, 'rb')
+    msgImage4 = MIMEImage(fp4.read(), _subtype="png")
+    fp4.close()
+    
+    # Define the image's ID as referenced above
+    msgImage4.add_header('Content-ID', '<image4>')
+    msg.attach(msgImage4)
     
     # conectaremos de forma segura usando SSL
     server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
@@ -73,3 +84,4 @@ def send_email(user,password,from_email=[]):
     server.login(username, password)
     server.sendmail(from_addr, to_addrs, msg.as_string())
     server.quit()
+    print ("[bold]E-mail enviado com sucesso! :bookmark:")

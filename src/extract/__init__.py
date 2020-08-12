@@ -35,7 +35,7 @@ def get_quote(path, inst, cod, value):
     except:
         df = pd.DataFrame({'instituicao':[inst],"codigo": [cod], "data":[data], "horario": [horario[0]],'valor_compra':[valor_de_compra], 'abertura':[float(abertura[12])], 'valor_atual': [float(abertura[9])]})
     
-    
+    print("[bold]Dataframe [green]{0} criado!".format(inst))
     return df
 
 def extract_data_qt(quote):

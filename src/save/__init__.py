@@ -7,6 +7,7 @@ from rich import print
 
 def save_df_as_image(df, path):
     imgkit.from_string(df.to_html(), path)
+    print ("[bold]Tabela salva! :smiley:")
 
 def graph_candlestick(df, title, name):
     month = datetime.today().month - 1
