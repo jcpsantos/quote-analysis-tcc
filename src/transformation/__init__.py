@@ -3,7 +3,7 @@ import re
 from rich import print
 
 def variation (df):
-    df['variacao']=df["valor_atual"].sub(df['valor_compra'])
+    df['variacao']=df["atual"].sub(df['compra'])
     return df
 
 def bind(dataframes):
@@ -13,5 +13,9 @@ def bind(dataframes):
 def horario(val):
     print(val)
     num = re.sub("[A-Za-z]", "", val)
-    num = re.sub(":", "", num, 1)
+    num = re.sub("\.", "", num)
     return num
+
+def get_predict_df(df, forecast, column):
+    df[column] = round(forecast[["yhat"]].tail(1),2).values
+    return df

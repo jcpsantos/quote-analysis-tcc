@@ -5,6 +5,7 @@ import pandas as pd
 from retrying import retry
 import pandas_datareader.data as web
 import yfinance as yf
+from rich import print
 
 @retry(stop_max_attempt_number=7, wait_fixed = 2000)
 def get_quote(path, inst, cod, value):
@@ -31,11 +32,11 @@ def get_quote(path, inst, cod, value):
     
 #Criando o dataframe
     try:
-        df = pd.DataFrame({'instituicao':[inst],"codigo": [cod], "data":[data], "horario": [horario[0]],'valor_compra':[valor_de_compra], 'abertura':[float(abertura[3])], 'valor_atual': [float(valor_atual)]})
+        df = pd.DataFrame({'instituicao':[inst],"codigo": [cod], "data":[data], "horario": [horario[0]],'compra':[valor_de_compra], 'abertura':[float(abertura[3])], 'atual': [float(valor_atual)]})
     except:
-        df = pd.DataFrame({'instituicao':[inst],"codigo": [cod], "data":[data], "horario": [horario[0]],'valor_compra':[valor_de_compra], 'abertura':[float(abertura[12])], 'valor_atual': [float(abertura[9])]})
+        df = pd.DataFrame({'instituicao':[inst],"codigo": [cod], "data":[data], "horario": [horario[0]],'compra':[valor_de_compra], 'abertura':[float(abertura[12])], 'atual': [float(abertura[9])]})
     
-    print("[bold]Dataframe [green]{0} criado!".format(inst))
+    print("[bold]Dataframe [green]{0} [/green]criado!".format(inst))
     return df
 
 def extract_data_qt(quote):
