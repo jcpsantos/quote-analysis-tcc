@@ -1,6 +1,4 @@
 import pandas as pd
-import pandas_datareader.data as web
-import yfinance as yf
 from fbprophet import Prophet
 import datetime as dt
 import warnings
@@ -24,3 +22,4 @@ def pred_model(m, period):
     future = future[future['ds'].dt.dayofweek < 5]
     forecast = m.predict(future)
     return forecast
+

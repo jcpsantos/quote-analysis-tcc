@@ -2,7 +2,7 @@ from conf.settings import GERDAU_DAY, RUMO_DAY, EMAIL_USER, PASSWORD, EMAIL_FROM
 import pandas as pd
 from extract import get_quote, extract_data_qt
 from transformation import variation, bind, horario, get_predict_df
-from transformation.ml import fit_model, pred_model             
+from transformation.ml import pred_model, fit_model         
 from save import save_df_as_image, graph_candlestick
 from save.email import send_email
 from rich import print
@@ -28,14 +28,6 @@ def main():
         graph_candlestick(df_rumo_ml, 'Rumo', 'RAIL3')
         graph_candlestick(df_marfrig_ml, 'Marfrig', 'MRFG3')
 
-        if int(datetime.datetime.now().hour) == 10:
-            ml_gerdau = fit_model(df_gerdau_ml)
-            print ("Modelo [green]Gerdau[/green] treinado")
-            ml_rumo = fit_model(df_rumo_ml)
-            print ("Modelo [green]Rumo[/green] treinado")
-            ml_marfrig = fit_model(df_marfrig_ml)
-            print ("Modelo [green]Marfrig[/green] treinado")
-
         #Dados Gerdau
         path = GERDAU_DAY
         inst = "Gerdau"
@@ -57,6 +49,14 @@ def main():
         df_gerdau = variation(df_gerdau)
         df_rumo = variation(df_rumo)
         df_marfrig = variation(df_marfrig)
+
+        ml_gerdau = fit_model(df_gerdau_ml)
+        print ("Modelo [green]Gerdau[/green] treinado")
+        ml_rumo = fit_model(df_rumo_ml)
+        print ("Modelo [green]Rumo[/green] treinado")
+        ml_marfrig = fit_model(df_marfrig_ml)
+        print ("Modelo [green]Marfrig[/green] treinado")
+        models = [ml_gerdau, ml_rumo, ml_marfrig]
 
         try:
             fct_gerdau30 = pred_model(ml_gerdau, 30)
