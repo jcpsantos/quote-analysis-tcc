@@ -29,4 +29,3 @@ $ pip install -r requirements.txt
 ## Relatório/Dashboard
 <a href="https://datastudio.google.com/s/ugfkDCXvYCQ">Dashboard</a>
 
-<iframe width="600" height="450" src="https://datastudio.google.com/embed/reporting/48f61161-0c26-48f7-87e2-449731832db4/page/2qocB" frameborder="0" style="border:0" allowfullscreen></iframe>
