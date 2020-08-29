@@ -1,7 +1,7 @@
 # Quote Analysis
 Projeto de analises de investimentos
 
-Esse projeto realiza uma analise das ações GGBR4 (Gerdau), RAIL3 (Rumo) e MRFG3 (Marfrig) onde foi realizada uma analise exploratória dessas ações utilizando a biblioteca **Yfinance** para recuperar os dados históricos dessas ações e em cima disso criado um relatório/dashboard utilizando o <a href="https://datastudio.google.com/">Data Studio</a>, também é realizado um relatório diário onde é realizado um webscrapping dos dados mais atualizados no site da <a href="https://finance.yahoo.com/">Yahoo Finance</a> e os dados enviados por e-mail. 
+Esse projeto realiza uma analise das ações GGBR4 (Gerdau), RAIL3 (Rumo) e MRFG3 (Marfrig) onde foi realizada uma análise exploratória dessas ações utilizando a biblioteca **Yfinance** para recuperar os dados históricos dessas ações e em cima disso criado um relatório/dashboard utilizando o <a href="https://datastudio.google.com/">Data Studio</a>, também é realizado um relatório diário onde é realizado um web scraping dos dados mais atualizados no site da <a href="https://finance.yahoo.com/">Yahoo Finance</a> e os dados enviados por e-mail. 
 Também faz parte desse projeto a utilização de machine learning para verificar as tendências dessas ações no curto e longo prazo. 
 
 ## Bibliotecas Importantes 
@@ -16,10 +16,10 @@ Também faz parte desse projeto a utilização de machine learning para verifica
 $ pip install -r requirements.txt
 ```
 
-## Analise Exploratória
+## Análise Exploratória
 <a href="https://github.com/jcpsantos/quote-analysis-tcc/blob/master/analises/analise_exploratoria.ipynb">Notebook</a>
 
-## Analises Utilizando Machine Learning
+## Análises Utilizando Machine Learning
 - <a href="https://github.com/jcpsantos/quote-analysis-tcc/blob/master/ml/lstm_ml.ipynb">LSTM</a>
 - <a href="https://github.com/jcpsantos/quote-analysis-tcc/blob/master/ml/prophet_ml.ipynb">Prophet</a>
 
