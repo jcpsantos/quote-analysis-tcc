@@ -1,0 +1,9 @@
+#Arquivo .env
+GERDAU_DAY = https://finance.yahoo.com/quote/GGBR4.SA?p=GGBR4.SA
+RUMO_DAY = https://finance.yahoo.com/quote/RAIL3.SA?p=RAIL3.SA                                                          
+MARFRIG_DAY = https://finance.yahoo.com/quote/MRFG3.SA?p=MRFG3.SA                                                       
+EMAIL_USER = seuemail@gmail.com
+PASSWORD = senha_token
+EMAIL_FROM1 = seuemail@outlook.com
+TABELA = caminho_onde_a_tabela_sera_salva
+GRAFICO = caminho_onde_o_grafico_sera_salvo
