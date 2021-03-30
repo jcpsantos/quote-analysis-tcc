@@ -24,7 +24,7 @@ pandas-datareader==0.9.0
 Pillow==7.2.0
 plotly==4.9.0
 psutil==5.7.2
-Pygments==2.6.1
+Pygments==2.7.4
 PyMeeus==0.3.7
 pyparsing==2.4.7
 pystan==2.19.1.1
