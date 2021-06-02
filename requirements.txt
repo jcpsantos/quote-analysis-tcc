@@ -39,5 +39,5 @@ setuptools-git==1.2
 six==1.15.0
 soupsieve==2.0.1
 typing-extensions==3.7.4.3
-urllib3==1.25.10
+urllib3==1.26.5
 yfinance==0.1.54
